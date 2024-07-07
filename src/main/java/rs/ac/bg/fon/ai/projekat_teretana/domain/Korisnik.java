@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -26,8 +27,7 @@ public class Korisnik extends AbstractDomainObject {
     private String kontakt;
     private Grad grad;
     private List<TipTreninga> tipovi = new ArrayList<>();
-    private static final long serialVersionUID=123456789;
-    
+    private static final long serialVersionUID = 123456789;
 
     public Korisnik() {
     }
@@ -41,7 +41,7 @@ public class Korisnik extends AbstractDomainObject {
         this.kontakt = kontakt;
         this.grad = grad;
         this.tipovi = tipovi;
-        
+
     }
 
     public int getIdKorisnika() {
@@ -57,6 +57,14 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setIme(String ime) {
+
+        if (!validateIme(ime)) {
+            throw new IllegalArgumentException("Ime nije u dobrom formatu");
+        }
+
+        if (ime == null) {
+            throw new NullPointerException("Ime ne sme biti null");
+        }
         this.ime = ime;
     }
 
@@ -65,6 +73,14 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setPrezime(String prezime) {
+
+        if (!validatePrezime(prezime)) {
+            throw new IllegalArgumentException("Prezime nije u dobrom formatu");
+        }
+
+        if (prezime == null) {
+            throw new NullPointerException("Prezime ne sme biti null");
+        }
         this.prezime = prezime;
     }
 
@@ -73,6 +89,12 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setDatumRodjenja(Date datumRodjenja) {
+        
+         if(datumRodjenja==null)
+            throw new NullPointerException("Datum ne sme biti null");
+        
+        if(datumRodjenja.after(new Date()))
+            throw new IllegalArgumentException("Datum rodjenja se ne sme odnositi na buducnost");
         this.datumRodjenja = datumRodjenja;
     }
 
@@ -81,6 +103,11 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setAdresa(String adresa) {
+        if(adresa==null)
+            throw new NullPointerException("Adresa ne sme biti null");
+        if(adresa.isEmpty()){
+            throw new IllegalArgumentException("Adresa ne sme biti prazan string");
+        }
         this.adresa = adresa;
     }
 
@@ -89,6 +116,14 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setKontakt(String kontakt) {
+
+        if (!validateKontakt(kontakt)) {
+            throw new IllegalArgumentException("Kontakt nije u dobrom formatu");
+        }
+
+        if (kontakt == null) {
+            throw new NullPointerException("Kontakt ne sme biti null");
+        }
         this.kontakt = kontakt;
     }
 
@@ -97,6 +132,9 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setGrad(Grad grad) {
+        if(grad==null){
+            throw new NullPointerException("Ne sme grad biti null");
+        }
         this.grad = grad;
     }
 
@@ -105,6 +143,12 @@ public class Korisnik extends AbstractDomainObject {
     }
 
     public void setTipovi(List<TipTreninga> tipovi) {
+        
+        if(tipovi==null){
+            throw new NullPointerException("Tipovi ne smeju biti null");
+        }
+        if(tipovi.isEmpty())
+            throw new IllegalArgumentException("Korisnik mora imati barem jedan tip treninga");
         this.tipovi = tipovi;
     }
 
@@ -117,10 +161,14 @@ public class Korisnik extends AbstractDomainObject {
 //    }
     @Override
     public String toString() {
-        return ime+" "+prezime;
+        return ime + " " + prezime;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -134,10 +182,15 @@ public class Korisnik extends AbstractDomainObject {
             return false;
         }
         final Korisnik other = (Korisnik) obj;
-        return this.idKorisnika == other.idKorisnika;
+        if (!Objects.equals(this.ime, other.ime)) {
+            return false;
+        }
+        if (!Objects.equals(this.prezime, other.prezime)) {
+            return false;
+        }
+        return Objects.equals(this.kontakt, other.kontakt);
     }
-    
-    
+
     
 
     @Override
@@ -172,28 +225,32 @@ public class Korisnik extends AbstractDomainObject {
 
     @Override
     public String updateValues() {
-        
-        return " adresa= '" + adresa + "', kontakt = '" + kontakt+"'";
+
+        return " adresa= '" + adresa + "', kontakt = '" + kontakt + "'";
     }
 
     @Override
     public String requiredCondition() {
-        
-        return " idKorisnika="+idKorisnika;
+
+        return " idKorisnika=" + idKorisnika;
     }
 
     @Override
     public String conditionForSelect() {
 
-        if(ime==null && prezime==null && kontakt==null && adresa==null && tipovi.isEmpty() && datumRodjenja==null)
+        if (ime == null && prezime == null && kontakt == null && adresa == null && tipovi.isEmpty() && datumRodjenja == null) {
             return "";
-        
-        if(!tipovi.isEmpty())
-            return " WHERE tt.idTipa= "+tipovi.get(0).getIdTipa();
-        if((ime==null || ime.isEmpty()) && prezime!=null)
-           return " WHERE k.prezime LIKE '" + prezime + "%'";
-        if((prezime==null || prezime.isEmpty()) && ime!=null)
+        }
+
+        if (!tipovi.isEmpty()) {
+            return " WHERE tt.idTipa= " + tipovi.get(0).getIdTipa();
+        }
+        if ((ime == null || ime.isEmpty()) && prezime != null) {
+            return " WHERE k.prezime LIKE '" + prezime + "%'";
+        }
+        if ((prezime == null || prezime.isEmpty()) && ime != null) {
             return " WHERE k.ime LIKE '" + ime + "%'";
+        }
         return " WHERE k.ime LIKE '" + ime + "%' and k.prezime LIKE '" + prezime + "%'";
     }
 
@@ -243,8 +300,34 @@ public class Korisnik extends AbstractDomainObject {
 
     @Override
     public String getIdCondition() {
-        
-        return " WHERE kt.idKorisnika= "+idKorisnika;
+
+        return " WHERE kt.idKorisnika= " + idKorisnika;
+    }
+
+    private boolean validateIme(String ime) {
+
+        if (!ime.matches("[a-zA-Z]+") || !Character.isUpperCase(ime.charAt(0))) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePrezime(String prezime) {
+
+        if (!prezime.matches("[a-zA-Z]+") || !Character.isUpperCase(prezime.charAt(0))) {
+            return false;
+        }
+        return true;
+
+    }
+
+    private boolean validateKontakt(String kontakt) {
+
+        if (!kontakt.matches("[\\d]+") || !kontakt.startsWith("06")
+                || (kontakt.length() != 9 && kontakt.length() != 10)) {
+            return false;
+        }
+        return true;
     }
 
 }
