@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -39,6 +40,11 @@ public class Grad extends AbstractDomainObject {
     }
 
     public void setNaziv(String naziv) {
+        
+        if(naziv==null)
+            throw new NullPointerException("Naziv ne sme biti null");
+        if(naziv.isEmpty())
+            throw new IllegalArgumentException("Naziv ne sme biti prazan string");
         this.naziv = naziv;
     }
 
@@ -46,6 +52,29 @@ public class Grad extends AbstractDomainObject {
     public String toString() {
         return naziv;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Grad other = (Grad) obj;
+        return Objects.equals(this.naziv, other.naziv);
+    }
+    
+    
 
     @Override
     public String tableName() {
