@@ -49,6 +49,14 @@ public class Trener extends AbstractDomainObject {
     }
 
     public void setIme(String ime) {
+        
+        
+        if(!validateIme(ime))
+            throw new IllegalArgumentException("Ime nije u dobrom formatu");
+        
+        if(ime==null)
+            throw new NullPointerException("Ime ne sme biti null");
+        
         this.ime = ime;
     }
 
@@ -57,6 +65,13 @@ public class Trener extends AbstractDomainObject {
     }
 
     public void setPrezime(String prezime) {
+        
+        if(!validatePrezime(prezime))
+            throw new IllegalArgumentException("Prezime nije u dobrom formatu");
+        
+        if(prezime==null)
+            throw new NullPointerException("Prezime ne sme biti null");
+        
         this.prezime = prezime;
     }
 
@@ -65,6 +80,13 @@ public class Trener extends AbstractDomainObject {
     }
 
     public void setKontakt(String kontakt) {
+        
+        if(!validateKontakt(kontakt))
+            throw new IllegalArgumentException("Kontakt nije u dobrom formatu");
+        
+        if(kontakt==null)
+            throw new NullPointerException("Kontakt ne sme biti null");
+        
         this.kontakt = kontakt;
     }
 
@@ -81,6 +103,10 @@ public class Trener extends AbstractDomainObject {
     }
 
     public void setGodineIskustva(int godineIskustva) {
+        
+       if(godineIskustva<0)
+           throw new IllegalArgumentException("Godine ne smeju biti manje od nule");
+        
         this.godineIskustva = godineIskustva;
     }
     
@@ -88,6 +114,31 @@ public class Trener extends AbstractDomainObject {
         return ime + " " + prezime;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Trener other = (Trener) obj;
+        if (!Objects.equals(this.ime, other.ime)) {
+            return false;
+        }
+        return Objects.equals(this.prezime, other.prezime);
+    }
+
+    
     
 
     @Override
@@ -175,6 +226,31 @@ public class Trener extends AbstractDomainObject {
     }
 
     
+     private boolean validateIme(String ime) {
+
+        if (!ime.matches("[a-zA-Z]+") || !Character.isUpperCase(ime.charAt(0))) {
+            return false;
+        }
+        return true;
+    }
+    
+      private boolean validatePrezime(String prezime) {
+
+        if (!prezime.matches("[a-zA-Z]+") || !Character.isUpperCase(prezime.charAt(0))) {
+            return false;
+        }
+        return true;
+
+    }
+
+    private boolean validateKontakt(String kontakt) {
+
+        if (!kontakt.matches("[\\d]+") || !kontakt.startsWith("06")
+                || (kontakt.length() != 9 && kontakt.length() != 10)) {
+            return false;
+        }
+        return true;
+    }
     
     
     
