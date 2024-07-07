@@ -44,6 +44,12 @@ public class TipTreninga extends AbstractDomainObject {
     }
 
     public void setNazivTipa(String nazivTipa) {
+        
+        if(nazivTipa==null)
+            throw new NullPointerException("Naziv ne sme biti null");
+        if(nazivTipa.isEmpty())
+            throw new IllegalArgumentException("Naziv ne sme biti prazan string");
+        
         this.nazivTipa = nazivTipa;
     }
 
@@ -52,6 +58,12 @@ public class TipTreninga extends AbstractDomainObject {
     }
 
     public void setOpis(String opis) {
+        
+        if(opis==null)
+            throw new NullPointerException("Opis ne sme biti null");
+        if(opis.isEmpty())
+            throw new IllegalArgumentException("Opis ne sme biti prazan string");
+        
         this.opis = opis;
     }
 
@@ -73,14 +85,10 @@ public class TipTreninga extends AbstractDomainObject {
             return false;
         }
         final TipTreninga other = (TipTreninga) obj;
-        if (this.idTipa != other.idTipa) {
-            return false;
-        }
-        if (!Objects.equals(this.nazivTipa, other.nazivTipa)) {
-            return false;
-        }
-        return Objects.equals(this.opis, other.opis);
+        return Objects.equals(this.nazivTipa, other.nazivTipa);
     }
+
+    
     
     
     
