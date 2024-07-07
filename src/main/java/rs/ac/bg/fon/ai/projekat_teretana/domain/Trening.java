@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -52,6 +53,8 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setCena(int cena) {
+        if(cena<=0)
+            throw new IllegalArgumentException("Cena ne sme biti manja od nule");
         this.cena = cena;
     }
 
@@ -60,6 +63,13 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setDatumTreninga(Date datumTreninga) {
+        
+        if(datumTreninga==null)
+            throw new NullPointerException("Datum ne sme biti null");
+        
+        if(datumTreninga.after(new Date()))
+            throw new IllegalArgumentException("Datum se ne sme odnositi na buducnost");
+        
         this.datumTreninga = datumTreninga;
     }
 
@@ -68,6 +78,10 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTrajanjeUMin(int trajanjeUMin) {
+        
+        if(trajanjeUMin<=0)
+            throw new IllegalArgumentException("Trajanje treninga mora biti pozitivan broj");
+        
         this.trajanjeUMin = trajanjeUMin;
     }
 
@@ -76,6 +90,9 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTip(TipTreninga tip) {
+        
+        if(tip==null)
+            throw new NullPointerException("Tip ne sme biti null");
         this.tip = tip;
     }
 
@@ -84,6 +101,8 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTrener(Trener trener) {
+        if(trener==null)
+            throw new IllegalArgumentException("Trener ne sme biti null");
         this.trener = trener;
     }
 
@@ -103,6 +122,29 @@ public class Trening extends AbstractDomainObject {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return tip + " , " + sdf.format(datumTreninga) + " , " + trener;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Trening other = (Trening) obj;
+        return Objects.equals(this.datumTreninga, other.datumTreninga);
+    }
+    
+    
 
     @Override
     public String tableName() {
