@@ -42,6 +42,8 @@ public class Statistika extends AbstractDomainObject {
     }
 
     public void setProcenatMasti(double procenatMasti) {
+        if(procenatMasti<0)
+            throw new IllegalArgumentException("Procenat masti mora biti pozitivan broj");
         this.procenatMasti = procenatMasti;
     }
 
@@ -50,6 +52,8 @@ public class Statistika extends AbstractDomainObject {
     }
 
     public void setProcenatMisica(double procenatMisica) {
+        if(procenatMisica<0)
+            throw new IllegalArgumentException("Procenat misica mora biti pozitivan broj");
         this.procenatMisica = procenatMisica;
     }
 
@@ -58,6 +62,8 @@ public class Statistika extends AbstractDomainObject {
     }
 
     public void setTezinaUKG(double tezinaUKG) {
+        if(tezinaUKG<0)
+            throw new IllegalArgumentException("Tezina mora biti pozitivan broj");
         this.tezinaUKG = tezinaUKG;
     }
 
@@ -65,6 +71,35 @@ public class Statistika extends AbstractDomainObject {
     public String toString() {
         return "Statistika{" + "procenatMasti=" + procenatMasti + ", procenatMisica=" + procenatMisica + ", tezinaUKG=" + tezinaUKG + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Statistika other = (Statistika) obj;
+        if (Double.doubleToLongBits(this.procenatMasti) != Double.doubleToLongBits(other.procenatMasti)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.procenatMisica) != Double.doubleToLongBits(other.procenatMisica)) {
+            return false;
+        }
+        return Double.doubleToLongBits(this.tezinaUKG) == Double.doubleToLongBits(other.tezinaUKG);
+    }
+    
+    
 
     @Override
     public String tableName() {
