@@ -12,9 +12,8 @@ import java.util.ArrayList;
  *
  * @author Stefan
  */
-public class Statistika extends AbstractDomainObject{
-    
-    
+public class Statistika extends AbstractDomainObject {
+
     private int id;
     private double procenatMasti;
     private double procenatMisica;
@@ -61,11 +60,11 @@ public class Statistika extends AbstractDomainObject{
     public void setTezinaUKG(double tezinaUKG) {
         this.tezinaUKG = tezinaUKG;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Statistika{" + "procenatMasti=" + procenatMasti + ", procenatMisica=" + procenatMisica + ", tezinaUKG=" + tezinaUKG + '}';
+    }
 
     @Override
     public String tableName() {
@@ -84,14 +83,14 @@ public class Statistika extends AbstractDomainObject{
 
     @Override
     public String insertColumns() {
-        
+
         return " (procenatMasti,procenatMisica,tezinaUKG) ";
     }
 
     @Override
     public String insertValues() {
-        
-        return procenatMasti+","+procenatMisica+","+tezinaUKG;
+
+        return procenatMasti + "," + procenatMisica + "," + tezinaUKG;
     }
 
     @Override
@@ -118,5 +117,5 @@ public class Statistika extends AbstractDomainObject{
     public ArrayList<AbstractDomainObject> getList(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
