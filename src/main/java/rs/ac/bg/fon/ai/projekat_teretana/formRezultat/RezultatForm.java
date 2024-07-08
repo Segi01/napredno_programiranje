@@ -14,8 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-
-
+import rs.ac.bg.fon.ai.projekat_teretana.domain.Statistika;
 
 /**
  *
@@ -34,13 +33,17 @@ public class RezultatForm extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         main = (MainForm) parent;
+        System.out.println("sta se desava");
         try {
             popuniComboBoxKorisnicima();
         } catch (Exception e) {
-           if(e instanceof IOException){
-            JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-            System.exit(0);
+            if (e instanceof IOException) {
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+                e.printStackTrace();
+                System.exit(0);
             }
+            
+            e.printStackTrace();
         }
     }
 
@@ -231,12 +234,12 @@ public class RezultatForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Polja " + porukaZaValidaciju + " nisu u dobrom formatu.");
                 return;
             }
-
-            RezultatiKorisnika rk = new RezultatiKorisnika(0, k, procenatMasti, procenatMisica, tezinaUKG, datumRezultataSql);
+            Statistika s = new Statistika(0, procenatMasti, procenatMisica, tezinaUKG);
+            RezultatiKorisnika rk = new RezultatiKorisnika(0, k, datumRezultataSql, s);
             int id = ClientController.getInstance().addRezultat(rk);
 
             JOptionPane.showMessageDialog(this, "Sistem je kreirao rezultat korisnika");
-                   
+
             refreshForm();
 
         } catch (Exception ex) {
@@ -305,6 +308,7 @@ public class RezultatForm extends javax.swing.JDialog {
     private void popuniComboBoxKorisnicima() throws Exception {
 
         List<Korisnik> korisnici = ClientController.getInstance().getListKorisnik();
+        System.out.println("sto ne radis");
         for (Korisnik korisnik : korisnici) {
             cmbKorisnici.addItem(korisnik);
         }

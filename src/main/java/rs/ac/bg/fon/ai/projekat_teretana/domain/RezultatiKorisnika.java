@@ -18,22 +18,22 @@ public class RezultatiKorisnika extends AbstractDomainObject {
     
     private int idRez;
     private Korisnik korisnik;
-    private double procenatMasti;
-    private double procenatMisica;
-    private double tezinaUKG;
     private Date datumRezultata;
+    private Statistika statistika;
 
     public RezultatiKorisnika() {
     }
 
-    public RezultatiKorisnika(int idRez, Korisnik korisnik, double procenatMasti, double procenatMisica, double tezinaUKG, Date datumRezultata) {
+    public RezultatiKorisnika(int idRez, Korisnik korisnik, Date datumRezultata, Statistika statistika) {
         this.idRez = idRez;
         this.korisnik = korisnik;
-        this.procenatMasti = procenatMasti;
-        this.procenatMisica = procenatMisica;
-        this.tezinaUKG = tezinaUKG;
         this.datumRezultata = datumRezultata;
+        this.statistika = statistika;
     }
+
+    
+
+    
 
     public int getIdRez() {
         return idRez;
@@ -51,29 +51,6 @@ public class RezultatiKorisnika extends AbstractDomainObject {
         this.korisnik = korisnik;
     }
 
-    public double getProcenatMasti() {
-        return procenatMasti;
-    }
-
-    public void setProcenatMasti(double procenatMasti) {
-        this.procenatMasti = procenatMasti;
-    }
-
-    public double getProcenatMisica() {
-        return procenatMisica;
-    }
-
-    public void setProcenatMisica(double procenatMisica) {
-        this.procenatMisica = procenatMisica;
-    }
-
-    public double getTezinaUKG() {
-        return tezinaUKG;
-    }
-
-    public void setTezinaUKG(double tezinaUKG) {
-        this.tezinaUKG = tezinaUKG;
-    }
 
     public Date getDatumRezultata() {
         return datumRezultata;
@@ -83,10 +60,23 @@ public class RezultatiKorisnika extends AbstractDomainObject {
         this.datumRezultata = datumRezultata;
     }
 
+    public Statistika getStatistika() {
+        return statistika;
+    }
+
+    public void setStatistika(Statistika statistika) {
+        this.statistika = statistika;
+    }
+    
+    
+    
+
     @Override
     public String toString() {
-        return "RezultatiKorisnika{" + "idRez=" + idRez + ", korisnik=" + korisnik + ", procenatMasti=" + procenatMasti + ", procenatMisica=" + procenatMisica + ", tezinaUKG=" + tezinaUKG + ", datumRezultata=" + datumRezultata + '}';
+        return "RezultatiKorisnika{" + "idRez=" + idRez + ", korisnik=" + korisnik + ", datumRezultata=" + datumRezultata + '}';
     }
+
+    
 
     @Override
     public String tableName() {
@@ -106,13 +96,12 @@ public class RezultatiKorisnika extends AbstractDomainObject {
     @Override
     public String insertColumns() {
         
-        return " (idKorisnika,procenatMasti,procenatMisica,tezinaUKg,datumRezultata) ";
+        return " (idKorisnika,datumRezultata,idStatistike) ";
     }
 
     @Override
     public String insertValues() {
-        return korisnik.getIdKorisnika()+","+procenatMasti+","+procenatMisica+","+
-                tezinaUKG+",'"+datumRezultata+"'";
+        return korisnik.getIdKorisnika()+",'"+datumRezultata+"'"+","+statistika.getId();
     }
 
     @Override

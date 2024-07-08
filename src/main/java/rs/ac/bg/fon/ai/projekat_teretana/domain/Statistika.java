@@ -84,12 +84,14 @@ public class Statistika extends AbstractDomainObject{
 
     @Override
     public String insertColumns() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        return " (procenatMasti,procenatMisica,tezinaUKG) ";
     }
 
     @Override
     public String insertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        return procenatMasti+","+procenatMisica+","+tezinaUKG;
     }
 
     @Override

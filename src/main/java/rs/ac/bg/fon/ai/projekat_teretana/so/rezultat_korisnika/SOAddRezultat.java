@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ai.projekat_teretana.so.rezultat_korisnika;
 import rs.ac.bg.fon.ai.projekat_teretana.db.DBBroker;
 import rs.ac.bg.fon.ai.projekat_teretana.domain.AbstractDomainObject;
 import rs.ac.bg.fon.ai.projekat_teretana.domain.RezultatiKorisnika;
+import rs.ac.bg.fon.ai.projekat_teretana.domain.Statistika;
 import rs.ac.bg.fon.ai.projekat_teretana.so.AbstractSO;
 
 
@@ -17,10 +18,17 @@ import rs.ac.bg.fon.ai.projekat_teretana.so.AbstractSO;
  */
 public class SOAddRezultat extends AbstractSO {
 
-    private int id;
+    private int idRez;
+    private int idStat;
 
-    public int getId() {
-        return id;
+    public int getIdStat() {
+        return idStat;
+    }
+    
+    
+
+    public int getIdRez() {
+        return idRez;
     }
     
     
@@ -38,8 +46,18 @@ public class SOAddRezultat extends AbstractSO {
     @Override
     protected void execute(Object obj) throws Exception {
         
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
-        id=DBBroker.getInstance().insert(ado);
+        
+        RezultatiKorisnika rezKor=(RezultatiKorisnika) obj;
+        Statistika s=rezKor.getStatistika();
+        AbstractDomainObject ado1=s;
+        idStat=DBBroker.getInstance().insert(ado1);
+        
+        s.setId(idStat);
+        rezKor.setStatistika(s);
+        
+        
+        AbstractDomainObject ado2=rezKor;
+        idRez=DBBroker.getInstance().insert(ado2);
         
     }
     

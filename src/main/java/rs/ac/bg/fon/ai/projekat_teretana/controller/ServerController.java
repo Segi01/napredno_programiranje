@@ -324,7 +324,7 @@ public class ServerController {
         try {
             SOAddRezultat so = new SOAddRezultat();
             so.templateExecute(rezultatiKorisnika);
-            return so.getId();
+            return so.getIdRez();
         } catch (Exception e) {
             throw new Exception("Sistem ne moze da kreira rezultat korisnika");
         }
