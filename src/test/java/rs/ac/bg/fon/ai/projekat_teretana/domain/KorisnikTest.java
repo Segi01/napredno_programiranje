@@ -80,8 +80,8 @@ public class KorisnikTest {
 
         assertEquals(0, k.getIdKorisnika());
         assertEquals("Hercegovacka", k.getAdresa());
-        assertEquals(tip1, tipovi.get(0));
-        assertEquals(tip2, tipovi.get(1));
+        assertEquals(tip1, k.getTipovi().get(0));
+        assertEquals(tip2, k.getTipovi().get(1));
 
         assertEquals(2, k.getTipovi().size());
         assertEquals("Beograd", k.getGrad().getNaziv());

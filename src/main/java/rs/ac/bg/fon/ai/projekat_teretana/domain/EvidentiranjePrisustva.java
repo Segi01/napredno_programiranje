@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -38,6 +39,8 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
     }
 
     public void setTrening(Trening trening) {
+        if(trening==null)
+            throw new NullPointerException("Trening ne sme biti null");
         this.trening = trening;
     }
 
@@ -46,6 +49,8 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
     }
 
     public void setKorisnik(Korisnik korisnik) {
+        if(korisnik==null)
+            throw new NullPointerException("Korisnik ne sme biti null");
         this.korisnik = korisnik;
     }
 
@@ -54,6 +59,9 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
     }
 
     public void setPotroseneKal(int potroseneKal) {
+        if(potroseneKal<0){
+            throw new IllegalArgumentException("Potrosene kalorije ne mogu biti negativan broj");
+        }
         this.potroseneKal = potroseneKal;
     }
 
@@ -62,6 +70,8 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
     }
 
     public void setOtkucajiSrca(int otkucajiSrca) {
+        if(otkucajiSrca<0)
+            throw new IllegalArgumentException("Otkucaji srca moraju biti veci od nule");
         this.otkucajiSrca = otkucajiSrca;
     }
 
@@ -69,6 +79,32 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
     public String toString() {
         return "EvidentiranjePrisustva{" + "trening=" + trening + ", korisnik=" + korisnik + ", potroseneKal=" + potroseneKal + ", otkucajiSrca=" + otkucajiSrca + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EvidentiranjePrisustva other = (EvidentiranjePrisustva) obj;
+        if (!Objects.equals(this.trening, other.trening)) {
+            return false;
+        }
+        return Objects.equals(this.korisnik, other.korisnik);
+    }
+    
+    
 
     @Override
     public String tableName() {
