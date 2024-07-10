@@ -33,17 +33,7 @@ public class SOSearchKorisnik extends AbstractSO {
         if (ado == null || !(ado instanceof Korisnik)) {
             throw new Exception("Prosledjeni objekat nije instanca klase Korisnik!");
         }
-        Korisnik k = (Korisnik) ado;
-
-        if (k.getTipovi().isEmpty()) {
-            if (!k.getIme().isEmpty() && (!k.getIme().matches("[a-zA-Z]+") || !Character.isUpperCase(k.getIme().charAt(0)))) {
-                throw new IllegalArgumentException("Ime nije u dobrom formatu!!!");
-            }
-
-            if (!k.getPrezime().isEmpty() && (!k.getPrezime().matches("[a-zA-Z]+") || !Character.isUpperCase(k.getPrezime().charAt(0)))) {
-                throw new IllegalArgumentException("Prezime nije u dobrom formatu!!!");
-            }
-        }
+       
 
     }
 
