@@ -42,6 +42,7 @@ public class SOSearchTrenerTest {
     public void setUp() throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         sOSearchTrener = new SOSearchTrener();
         trener = new Trener();
+        trener.setIme("Stefan");
 
         Field instanceBroker = DBBroker.class.getDeclaredField("instance");
         instanceBroker.setAccessible(true);
@@ -98,7 +99,7 @@ public class SOSearchTrenerTest {
         
         for (AbstractDomainObject abstractDomainObject : mockListaTreneri) {
             Trener t=(Trener) abstractDomainObject;
-            if(t.getIme().equals("Stefan"))
+            if(t.getIme().equals(trener.getIme()))
                 mockListaTreneriIspunjenUslov.add(abstractDomainObject);
         }
         

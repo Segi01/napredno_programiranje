@@ -44,7 +44,7 @@ public class SOSearchKorisnikTest {
     public void setUp() throws Exception {
         sOSearchKorisnik = new SOSearchKorisnik();
         korisnik = new Korisnik();
-
+        korisnik.setPrezime("Markovic");
        
         Field instanceField = DBBroker.class.getDeclaredField("instance");
         instanceField.setAccessible(true);
@@ -73,7 +73,7 @@ public class SOSearchKorisnikTest {
         
         for (AbstractDomainObject abstractDomainObject : mockKorisnici) {
             Korisnik k=(Korisnik) abstractDomainObject;
-            if(k.getPrezime().equals("Markovic"))
+            if(k.getPrezime().equals(korisnik.getPrezime()))
                 mockListKorisniciSaUslovom.add(abstractDomainObject);
         }
 
