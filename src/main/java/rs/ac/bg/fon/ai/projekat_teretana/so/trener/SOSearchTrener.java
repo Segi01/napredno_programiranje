@@ -29,15 +29,9 @@ public class SOSearchTrener extends AbstractSO{
          if (ado==null || !(ado instanceof Trener)) {
             throw new Exception("Prosledjeni objekat nije instanca klase Trener!");
         }
-         Trener trener=(Trener) ado;
          
-//         if (trener.getIme().isEmpty()){
-//             throw new Exception("Niste popunili polje ime!!");
-//         }
-        
-         if(!trener.getIme().isEmpty() &&(
-                 !trener.getIme().matches("[a-zA-Z]+") || !Character.isUpperCase(trener.getIme().charAt(0))))
-             throw new IllegalArgumentException("Ime nije u dobrom formatu!!!");
+         
+
     }
 
     @Override

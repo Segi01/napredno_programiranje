@@ -285,6 +285,9 @@ public class ServerController {
             SOAddPrisustva so = new SOAddPrisustva();
             so.templateExecute(list);
             System.out.println(so.getNizId().size());
+            for (Integer integer : so.getNizId()) {
+                System.out.println(integer);
+            }
         } catch (Exception e) {
             throw new Exception("Sistem ne moze da evidentira korisnike na treningu");
         }
