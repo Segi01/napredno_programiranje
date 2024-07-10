@@ -38,7 +38,7 @@ public class SOUpdatePrisustva extends AbstractSO {
         List<AbstractDomainObject> lista = (List<AbstractDomainObject>) obj;
         for (AbstractDomainObject abstractDomainObject : lista) {
             if (abstractDomainObject == null || !(abstractDomainObject instanceof EvidentiranjePrisustva)) {
-                throw new Exception("Prosledjeni objekat nije instanca klase Grad!");
+                throw new Exception("Prosledjeni objekat nije instanca klase EvidentiranjePrisustva!");
             }
         }
     }
