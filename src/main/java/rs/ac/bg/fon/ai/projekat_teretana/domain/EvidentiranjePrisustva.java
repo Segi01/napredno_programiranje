@@ -4,8 +4,6 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
-import com.google.gson.annotations.Expose;
-import static com.google.protobuf.JavaFeaturesProto.java;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,21 +12,57 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Predstavlja evidenciju prisustva korisnika na treningu.
  *
- * @author Stefan
+ * Evidentiranje prisustva uključuje trening, korisnika, potrošene kalorije i
+ * otkucaje srca. Nasledjuje apstraktnu klasu AbstractDomainObject za rad sa
+ * bazom podataka.
+ *
+ * @autor Stefan Segrt
  */
 public class EvidentiranjePrisustva extends AbstractDomainObject {
 
+    /**
+     * Trening na kojem je prisustvo evidentirano.
+     */
     private Trening trening;
-    private Korisnik korisnik;
-    private int potroseneKal;
-    private int otkucajiSrca;
-    private TipTreninga pomocna;
-    
 
+    /**
+     * Korisnik čije je prisustvo evidentirano.
+     */
+    private Korisnik korisnik;
+
+    /**
+     * Potrošene kalorije tokom treninga.
+     */
+    private int potroseneKal;
+
+    /**
+     * Otkucaji srca tokom treninga.
+     */
+    private int otkucajiSrca;
+
+    /**
+     * Pomoćna promenljiva za tip treninga.
+     */
+    private TipTreninga pomocna;
+
+    /**
+     * Pravi nov objekat klase EvidentiranjePrisustva. Svi atributi ostaju
+     * neinicijalizovani.
+     */
     public EvidentiranjePrisustva() {
     }
 
+    /**
+     * Pravi nov objekat klase EvidentiranjePrisustva i postavlja sve atribute
+     * na unete vrednosti.
+     *
+     * @param trening trening na kojem je prisustvo evidentirano kao Trening
+     * @param korisnik korisnik čije je prisustvo evidentirano kao Korisnik
+     * @param potroseneKal potrošene kalorije tokom treninga kao int
+     * @param otkucajiSrca otkucaji srca tokom treninga kao int
+     */
     public EvidentiranjePrisustva(Trening trening, Korisnik korisnik, int potroseneKal, int otkucajiSrca) {
         this.trening = trening;
         this.korisnik = korisnik;
@@ -36,47 +70,99 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
         this.otkucajiSrca = otkucajiSrca;
     }
 
+    /**
+     * Vraća trening na kojem je prisustvo evidentirano.
+     *
+     * @return trening kao Trening
+     */
     public Trening getTrening() {
         return trening;
     }
 
+    /**
+     * Postavlja trening na kojem je prisustvo evidentirano.
+     *
+     * @param trening trening kao Trening
+     * @throws NullPointerException ako je uneti trening null
+     */
     public void setTrening(Trening trening) {
-        if(trening==null)
+        if (trening == null) {
             throw new NullPointerException("Trening ne sme biti null");
+        }
         this.trening = trening;
     }
 
+    /**
+     * Vraća korisnika čije je prisustvo evidentirano.
+     *
+     * @return korisnik kao Korisnik
+     */
     public Korisnik getKorisnik() {
         return korisnik;
     }
 
+    /**
+     * Postavlja korisnika čije je prisustvo evidentirano.
+     *
+     * @param korisnik korisnik kao Korisnik
+     * @throws NullPointerException ako je uneti korisnik null
+     */
     public void setKorisnik(Korisnik korisnik) {
-        if(korisnik==null)
+        if (korisnik == null) {
             throw new NullPointerException("Korisnik ne sme biti null");
+        }
         this.korisnik = korisnik;
     }
 
+    /**
+     * Vraća potrošene kalorije tokom treninga.
+     *
+     * @return potrošene kalorije kao int
+     */
     public int getPotroseneKal() {
         return potroseneKal;
     }
 
+    /**
+     * Postavlja potrošene kalorije tokom treninga.
+     *
+     * @param potroseneKal potrošene kalorije kao int
+     * @throws IllegalArgumentException ako su potrošene kalorije negativan broj
+     */
     public void setPotroseneKal(int potroseneKal) {
-        if(potroseneKal<0){
+        if (potroseneKal < 0) {
             throw new IllegalArgumentException("Potrosene kalorije ne mogu biti negativan broj");
         }
         this.potroseneKal = potroseneKal;
     }
 
+    /**
+     * Vraća otkucaje srca tokom treninga.
+     *
+     * @return otkucaji srca kao int
+     */
     public int getOtkucajiSrca() {
         return otkucajiSrca;
     }
 
+    /**
+     * Postavlja otkucaje srca tokom treninga.
+     *
+     * @param otkucajiSrca otkucaji srca kao int
+     * @throws IllegalArgumentException ako su otkucaji srca manji od nule
+     */
     public void setOtkucajiSrca(int otkucajiSrca) {
-        if(otkucajiSrca<0)
+        if (otkucajiSrca < 0) {
             throw new IllegalArgumentException("Otkucaji srca moraju biti veci od nule");
+        }
         this.otkucajiSrca = otkucajiSrca;
     }
 
+    /**
+     * Vraca String reprezentaciju objekta EvidentiranjePrisustva
+     *
+     * @return String sa svim atributima objekta
+     */
     @Override
     public String toString() {
         return "EvidentiranjePrisustva{" + "trening=" + trening + ", korisnik=" + korisnik + ", potroseneKal=" + potroseneKal + ", otkucajiSrca=" + otkucajiSrca + '}';
@@ -88,6 +174,15 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
         return hash;
     }
 
+    /**
+     * Proverava da li su dva objekta jednaka
+     *
+     * @param obj objekat sa kojim se poredi EvidentiranjePrisustva
+     * @return true - ako oba objekta imaju istu memorijsku lokaciju, ili ako su
+     * iste klase i imaju istu vrednost objekata trening i korisnik 
+     * false - u ostalim slucajevima
+     *
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -105,19 +200,32 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
         }
         return Objects.equals(this.korisnik, other.korisnik);
     }
-    
-    
 
+    /**
+     * Vraća naziv tabele u bazi podataka koja odgovara ovom entitetu.
+     *
+     * @return naziv tabele kao String
+     */
     @Override
     public String tableName() {
-        return " evidentiranje_prisustva ";
+        return "evidentiranje_prisustva";
     }
 
+    /**
+     * Vraća alijas koji se koristi za ovu tabelu u SQL upitima.
+     *
+     * @return alijas kao String
+     */
     @Override
     public String alies() {
-        return " ep ";
+        return "ep";
     }
 
+    /**
+     * Vraća SQL kod za JOIN sa drugim tabelama u SQL upitu.
+     *
+     * @return SQL kod za JOIN kao String
+     */
     @Override
     public String textJoin() {
         return " JOIN korisnik k ON ep.idKorisnika = k.idKorisnika "
@@ -128,41 +236,65 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
                 + "JOIN trener trn ON tr.idTrenera=trn.idTrenera";
     }
 
+    /**
+     * Vraća nazive kolona za umetanje u bazu podataka.
+     *
+     * @return String sa nazivima kolona.
+     */
     @Override
     public String insertColumns() {
-
         return " (idTreninga,idKorisnika,potroseneKalorije,otkucajiSrca)";
     }
 
+    /**
+     * Vraća vrednosti za umetanje u bazu podataka.
+     *
+     * @return String sa vrednostima.
+     */
     @Override
     public String insertValues() {
-
         return trening.getIdTreninga() + "," + korisnik.getIdKorisnika()
                 + "," + potroseneKal + "," + otkucajiSrca;
     }
 
+    /**
+     * Metoda za ažuriranje vrednosti koje se umecu u bazu podataka.
+     *
+     * @return String sa vrednostima ukoliko ih ima.
+     */
     @Override
     public String updateValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
+    /**
+     * Vraća uslov potreban za delete upit nad bazom podataka.
+     *
+     * @return String sa uslovom.
+     */
     @Override
     public String requiredCondition() {
-        
-        
-        return " idTreninga="+trening.getIdTreninga();
+        return " idTreninga=" + trening.getIdTreninga();
     }
 
+    /**
+     * Vraća uslov za selektovanje podataka iz baze podataka.
+     *
+     * @return String sa uslovom za selekciju.
+     */
     @Override
     public String conditionForSelect() {
-        
-        pomocna=trening.getTip();
-//        System.out.println(6);
-//        System.out.println(trening.getIdTreninga());
-        //System.out.println(trening.getTip());
+        pomocna = trening.getTip();
         return " WHERE ep.idTreninga= " + trening.getIdTreninga();
     }
 
+    /**
+     * Pravi listu objekata EvidentiranjePrisustva na osnovu rezultata ResultSet-a.
+     *
+     * @param rs ResultSet iz baze podataka.
+     * @return Lista objekata.
+     * @throws SQLException ako dođe do greške prilikom pristupa ResultSet-u.
+     */
     @Override
     public ArrayList<AbstractDomainObject> getList(ResultSet rs) throws SQLException {
 
@@ -172,7 +304,6 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
         Map<Integer, EvidentiranjePrisustva> prisustva = new HashMap<>();
 
         while (rs.next()) {
-
             int idK = rs.getInt("k.idKorisnika");
             String imeK = rs.getString("k.ime");
             String prezimeK = rs.getString("k.prezime");
@@ -213,7 +344,7 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
                 tren.setIdTreninga(idTreninga);
                 tren.setTrener(t);
                 tren.setTrajanjeUMin(trajanjeTr);
-                tren.setTip(pomocna);  
+                tren.setTip(pomocna);
                 treninzi.put(idTreninga, tren);
             }
 
@@ -230,13 +361,11 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
                 korisnici.put(idK, k);
             }
 
-            //korisnik.getTipovi().add(tip);
             int potroseneKalorije = rs.getInt("ep.potroseneKalorije");
             int otkucajiS = rs.getInt("ep.otkucajiSrca");
 
             EvidentiranjePrisustva ep = prisustva.get(idK);
             if (ep == null) {
-
                 ep = new EvidentiranjePrisustva();
                 ep.setKorisnik(k);
                 ep.setTrening(tren);
@@ -250,9 +379,15 @@ public class EvidentiranjePrisustva extends AbstractDomainObject {
         return lista;
     }
 
+    /**
+     * Metoda za dobijanje uslova za izvrsenje select upita i vracanje jednog primerka entiteta.
+     *
+     * @return String kao uslov.
+     */
     @Override
     public String getIdCondition() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        return "";
     }
 
 }
