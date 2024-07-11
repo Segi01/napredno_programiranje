@@ -57,6 +57,12 @@ public class SOAddTrener extends AbstractSO{
         AbstractDomainObject ado=(AbstractDomainObject) obj;
         
         id=DBBroker.getInstance().insert(ado);
+//        Trener t=(Trener) ado;
+//        t.setIdTrenera(id);
+        
+        
+        
+        
         
     }
 

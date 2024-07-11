@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Korisnik extends AbstractDomainObject {
     private String kontakt;
     private Grad grad;
     private List<TipTreninga> tipovi = new ArrayList<>();
+    
     private static final long serialVersionUID = 123456789;
 
     public Korisnik() {
@@ -243,7 +245,7 @@ public class Korisnik extends AbstractDomainObject {
         }
 
         if (!tipovi.isEmpty()) {
-            return " WHERE tt.idTipa= " + tipovi.get(0).getIdTipa();
+            return "WHERE EXISTS (SELECT 1 FROM kt inner_kt JOIN tip_treninga inner_tt ON inner_kt.idTipa = inner_tt.idTipa WHERE inner_kt.idKorisnika = k.idKorisnika AND inner_tt.nazivTipa='"+ tipovi.get(0).getNazivTipa()+"')";
         }
         if ((ime == null || ime.isEmpty()) && prezime != null) {
             return " WHERE k.prezime LIKE '" + prezime + "%'";

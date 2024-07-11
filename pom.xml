@@ -12,13 +12,6 @@
         <exec.mainClass>rs.ac.bg.fon.ai.projekat_teretana.Projekat_teretana</exec.mainClass>
     </properties>
    
-    <repositories>
-        <repository>
-            <id>icm-repo</id>
-            <name>ICM Maven Repository</name>
-            <url>http://maven.icm.edu.pl/artifactory/repo/</url>
-        </repository>
-    </repositories>
     
     
     <dependencies>

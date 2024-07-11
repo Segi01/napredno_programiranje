@@ -4,6 +4,8 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
+import static com.google.protobuf.JavaFeaturesProto.java;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

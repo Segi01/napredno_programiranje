@@ -47,6 +47,8 @@ public class SOAddPrisustva extends AbstractSO {
             id = DBBroker.getInstance().insert(abstractDomainObject);
             nizId.add(id);
         }
+        
+        
 
     }
 

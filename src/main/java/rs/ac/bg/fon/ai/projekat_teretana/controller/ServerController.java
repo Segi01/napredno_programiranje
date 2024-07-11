@@ -289,6 +289,7 @@ public class ServerController {
                 System.out.println(integer);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("Sistem ne moze da evidentira korisnike na treningu");
         }
     }

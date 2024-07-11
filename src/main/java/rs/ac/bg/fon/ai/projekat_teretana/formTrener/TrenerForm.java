@@ -12,6 +12,7 @@ import rs.ac.bg.fon.ai.projekat_teretana.mainForms.MainForm;
 import javax.swing.JOptionPane;
 
 
+
 /**
  *
  * @author Stefan
@@ -303,6 +304,9 @@ public class TrenerForm extends javax.swing.JDialog {
             txtKontakt.setText("");
             txtGdnIsk.setText("");
             txtPrezime.setText("");
+            
+            
+            
 
         } catch (Exception e) {
 

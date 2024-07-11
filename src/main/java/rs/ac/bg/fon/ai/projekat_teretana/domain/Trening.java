@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -25,8 +26,8 @@ public class Trening extends AbstractDomainObject {
     private int trajanjeUMin;
     private TipTreninga tip;
     private Trener trener;
-    private int konstanta=0;
-    
+
+    private int konstanta = 0;
 
     public Trening() {
     }
@@ -53,8 +54,9 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setCena(int cena) {
-        if(cena<=0)
+        if (cena <= 0) {
             throw new IllegalArgumentException("Cena ne sme biti manja od nule");
+        }
         this.cena = cena;
     }
 
@@ -63,13 +65,15 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setDatumTreninga(Date datumTreninga) {
-        
-        if(datumTreninga==null)
+
+        if (datumTreninga == null) {
             throw new NullPointerException("Datum ne sme biti null");
-        
-        if(datumTreninga.after(new Date()))
+        }
+
+        if (datumTreninga.after(new Date())) {
             throw new IllegalArgumentException("Datum se ne sme odnositi na buducnost");
-        
+        }
+
         this.datumTreninga = datumTreninga;
     }
 
@@ -78,10 +82,11 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTrajanjeUMin(int trajanjeUMin) {
-        
-        if(trajanjeUMin<=0)
+
+        if (trajanjeUMin <= 0) {
             throw new IllegalArgumentException("Trajanje treninga mora biti pozitivan broj");
-        
+        }
+
         this.trajanjeUMin = trajanjeUMin;
     }
 
@@ -90,9 +95,10 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTip(TipTreninga tip) {
-        
-        if(tip==null)
+
+        if (tip == null) {
             throw new NullPointerException("Tip ne sme biti null");
+        }
         this.tip = tip;
     }
 
@@ -101,8 +107,9 @@ public class Trening extends AbstractDomainObject {
     }
 
     public void setTrener(Trener trener) {
-        if(trener==null)
+        if (trener == null) {
             throw new IllegalArgumentException("Trener ne sme biti null");
+        }
         this.trener = trener;
     }
 
@@ -113,8 +120,6 @@ public class Trening extends AbstractDomainObject {
     public int getKonstanta() {
         return konstanta;
     }
-    
-    
 
     @Override
     public String toString() {
@@ -143,8 +148,6 @@ public class Trening extends AbstractDomainObject {
         final Trening other = (Trening) obj;
         return Objects.equals(this.datumTreninga, other.datumTreninga);
     }
-    
-    
 
     @Override
     public String tableName() {
@@ -159,10 +162,11 @@ public class Trening extends AbstractDomainObject {
 
     @Override
     public String textJoin() {
-        if(konstanta==1)
+        if (konstanta == 1) {
             return "LEFT JOIN evidentiranje_prisustva ep ON t.idTreninga=ep.idTreninga JOIN trener tr ON t.idTrenera=tr.idTrenera "
-                + "JOIN tip_treninga tt ON t.idTipa=tt.idTipa";
-        
+                    + "JOIN tip_treninga tt ON t.idTipa=tt.idTipa";
+        }
+
         return " JOIN trener tr on t.idTrenera=tr.idTrenera "
                 + "JOIN tip_treninga tt on t.idTipa=tt.idTipa";
     }
@@ -195,10 +199,11 @@ public class Trening extends AbstractDomainObject {
     @Override
     public String conditionForSelect() {
 
-        if(cena == 0 && datumTreninga == null && trajanjeUMin == 0 && tip == null && trener == null && konstanta==0)
+        if (cena == 0 && datumTreninga == null && trajanjeUMin == 0 && tip == null && trener == null && konstanta == 0) {
             return "";
-        
-        if (cena == 0 && datumTreninga == null && trajanjeUMin == 0 && tip == null && trener == null && konstanta==1) {
+        }
+
+        if (cena == 0 && datumTreninga == null && trajanjeUMin == 0 && tip == null && trener == null && konstanta == 1) {
             return " WHERE ep.idTreninga IS NULL";
         }
         if (cena == 0 && tip != null) {

@@ -22,6 +22,7 @@ import javax.swing.JTable;
 
 
 
+
 /**
  *
  * @author Stefan
@@ -436,6 +437,10 @@ public class KorisnikForm extends javax.swing.JDialog {
             mtt = new ModelTabeleTipovi(praznaListaTipova);
             tblKorisnickiTipovi.setModel(mtt);
             refresujFormu();
+            
+            
+            
+            
 
         } catch (Exception ex) {
             if (ex instanceof IOException) {

@@ -18,8 +18,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 
-
-
 /**
  *
  * @author Stefan
@@ -332,23 +330,10 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             for (Korisnik korisnik : korisnici) {
                 cmbKorisnici.addItem(korisnik);
             }
+
+            System.out.println(korisnici.get(0).getTipovi());
             cmbKorisnici.setSelectedIndex(-1);
 
-//            for (Korisnik korisnik : korisnici) {
-//                System.out.println(korisnik.getIme());
-//                System.out.println(korisnik.getPrezime());
-//                System.out.println(korisnik.getGrad());
-//                System.out.println(String.valueOf(korisnik.getDatumRodjenja()));
-//                System.out.println(korisnik.getAdresa());
-//                System.out.println(korisnik.getKontakt());
-//                List<TipTreninga> tips=korisnik.getTipovi();
-//                for (TipTreninga tip1 : tips) {
-//                    System.out.println(tip1);
-//                }
-//                System.out.println();
-//                System.out.println();
-//                
-//            }
             btnUcitajKorisnike.setEnabled(false);
             cmbTrening.setEnabled(false);
             btnUcitajEvidencije.setEnabled(true);
@@ -378,6 +363,7 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Morate izabrati nekog korisnika!!!");
                 return;
             }
+            //System.out.println(korisnik.getTipovi());
 
             int kalorije = validateKalorije(txtKalorije.getText());
             int brojotk = validateOtkucaje(txtOtkucaji.getText());
@@ -479,6 +465,7 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             ModelTabeleEP mtep = (ModelTabeleEP) tblEP.getModel();
             List<EvidentiranjePrisustva> prisustva = mtep.getPrisustva();
 
+            // System.out.println(prisustva.get(0).getKorisnik().getTipovi());
             ClientController.getInstance().addPrisustva(prisustva);
 
             JOptionPane.showMessageDialog(this, "Sistem je evidentirao korisnike na treningu");
@@ -493,6 +480,8 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setSelectedIndex(-1);
             cmbTrening.setEnabled(true);
             btnUcitajKorisnike.setEnabled(true);
+
+            
 
         } catch (Exception ex) {
 
@@ -674,11 +663,11 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setSelectedIndex(-1);
 
         } catch (Exception ex) {
-            if(ex instanceof IOException){
-            JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-            System.exit(0);
+            if (ex instanceof IOException) {
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+                System.exit(0);
             }
-                
+
         }
 
     }
@@ -702,9 +691,9 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setSelectedIndex(-1);
 
         } catch (Exception ex) {
-            if(ex instanceof IOException){
-            JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-            System.exit(0);
+            if (ex instanceof IOException) {
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+                System.exit(0);
             }
         }
     }
