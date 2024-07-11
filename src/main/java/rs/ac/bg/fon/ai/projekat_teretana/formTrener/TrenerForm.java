@@ -4,14 +4,14 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.formTrener;
 
+import static com.google.protobuf.JavaFeaturesProto.java;
 import java.io.IOException;
 import rs.ac.bg.fon.ai.projekat_teretana.controller.ClientController;
 import rs.ac.bg.fon.ai.projekat_teretana.domain.Trener;
 import rs.ac.bg.fon.ai.projekat_teretana.formTrener.constants.MyConstantsTrener;
 import rs.ac.bg.fon.ai.projekat_teretana.mainForms.MainForm;
 import javax.swing.JOptionPane;
-
-
+import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
@@ -20,9 +20,9 @@ import javax.swing.JOptionPane;
 public class TrenerForm extends javax.swing.JDialog {
 
     private int mode;
-    
+
     MainForm mf;
-    
+
     /**
      * Creates new form KreirajTrenera
      */
@@ -31,7 +31,7 @@ public class TrenerForm extends javax.swing.JDialog {
         initComponents();
         this.mode = mode;
         prepareForm();
-        mf=(MainForm) parent;
+        mf = (MainForm) parent;
         cmbSertifikat.setSelectedIndex(-1);
         setTitle("Dodaj trenera");
     }
@@ -193,10 +193,10 @@ public class TrenerForm extends javax.swing.JDialog {
 
             String kontakt = txtKontakt.getText();
             String godStr = txtGdnIsk.getText();
-            int godineIsk=0;
+            int godineIsk = 0;
 
             String porukaZaPrazno = "";
-            int brojac=0;
+            int brojac = 0;
             if (ime.isEmpty() || prezime.isEmpty() || strSert == null || kontakt.isEmpty() || godStr.isEmpty()) {
 
                 if (ime.isEmpty()) {
@@ -211,89 +211,88 @@ public class TrenerForm extends javax.swing.JDialog {
                     porukaZaPrazno += "sertifikat, ";
                     brojac++;
                 }
-                if (kontakt.isEmpty()){
-                    porukaZaPrazno+= "kontakt, ";
+                if (kontakt.isEmpty()) {
+                    porukaZaPrazno += "kontakt, ";
                     brojac++;
-                    
-                } 
-                if(godStr.isEmpty()){
-                    porukaZaPrazno+= "godine iskustva";
+
+                }
+                if (godStr.isEmpty()) {
+                    porukaZaPrazno += "godine iskustva";
                     brojac++;
                 }
-                if(brojac==1){
-                    porukaZaPrazno="Polje "+porukaZaPrazno+" nije popunjeno.";
+                if (brojac == 1) {
+                    porukaZaPrazno = "Polje " + porukaZaPrazno + " nije popunjeno.";
                     JOptionPane.showMessageDialog(this, porukaZaPrazno);
                     return;
                 }
-                JOptionPane.showMessageDialog(this,"Polja za "+ porukaZaPrazno+" nisu popunjena.");
+                JOptionPane.showMessageDialog(this, "Polja za " + porukaZaPrazno + " nisu popunjena.");
                 return;
-            
+
             }
-            brojac=0;
-            Object odgovor=validateGodinaIskustva(godStr);
-            String porukaZaValidaciju="";
-            if(!ime.isEmpty() && !prezime.isEmpty() && sertifikat!=null && !kontakt.isEmpty() && !godStr.isEmpty()){
-                
-                if(!validateIme(ime)){
-                    porukaZaValidaciju+="ime, ";
+            brojac = 0;
+            Object odgovor = validateGodinaIskustva(godStr);
+            String porukaZaValidaciju = "";
+            if (!ime.isEmpty() && !prezime.isEmpty() && sertifikat != null && !kontakt.isEmpty() && !godStr.isEmpty()) {
+
+                if (!validateIme(ime)) {
+                    porukaZaValidaciju += "ime, ";
                     brojac++;
                 }
-                if(!validatePrezime(prezime)){
-                    porukaZaValidaciju+="prezime, ";
+                if (!validatePrezime(prezime)) {
+                    porukaZaValidaciju += "prezime, ";
                     brojac++;
                 }
-                if(!validateKontakt(kontakt)){
-                    porukaZaValidaciju+="kontakt, ";
+                if (!validateKontakt(kontakt)) {
+                    porukaZaValidaciju += "kontakt, ";
                     brojac++;
                 }
-                if (odgovor==null){
-                    porukaZaValidaciju+="godine iskustva, ";
+                if (odgovor == null) {
+                    porukaZaValidaciju += "godine iskustva, ";
                     brojac++;
                 }
-                if(brojac==1 && porukaZaValidaciju.contains("kontakt")){
-                    JOptionPane.showMessageDialog(this, "Polje "+porukaZaValidaciju+" nije u dobrom formatu. "
+                if (brojac == 1 && porukaZaValidaciju.contains("kontakt")) {
+                    JOptionPane.showMessageDialog(this, "Polje " + porukaZaValidaciju + " nije u dobrom formatu. "
                             + "Ocekivani format za kontakt telefon je '06X XXX XXXX' ,duzine 9 ili 10 cfiara.");
                     return;
-                    
+
                 }
-                if(brojac==1 && porukaZaValidaciju.contains("godine iskustva")){
-                    JOptionPane.showMessageDialog(this, "Polje "+porukaZaValidaciju+" nije u dobrom formatu. "
+                if (brojac == 1 && porukaZaValidaciju.contains("godine iskustva")) {
+                    JOptionPane.showMessageDialog(this, "Polje " + porukaZaValidaciju + " nije u dobrom formatu. "
                             + "Ocekivano je za godine iskustva da budu pozitivan broj manji od 60.");
                     return;
                 }
-                if(brojac==1){
-                    JOptionPane.showMessageDialog(this, "Polje "+porukaZaValidaciju+" nije u dobrom formatu.");
-                            
+                if (brojac == 1) {
+                    JOptionPane.showMessageDialog(this, "Polje " + porukaZaValidaciju + " nije u dobrom formatu.");
+
                     return;
                 }
-                
-                
-                if(porukaZaValidaciju.contains("kontakt") && !porukaZaValidaciju.contains("godine iskustva")){
-                    JOptionPane.showMessageDialog(this, "Polja "+porukaZaValidaciju+"nisu u dobrom formatu."
-                        + "Ocekivani format za kontakt telefon je '06X XXX XXXX' ,duzine 9 ili 10 cfiara.");
+
+                if (porukaZaValidaciju.contains("kontakt") && !porukaZaValidaciju.contains("godine iskustva")) {
+                    JOptionPane.showMessageDialog(this, "Polja " + porukaZaValidaciju + "nisu u dobrom formatu."
+                            + "Ocekivani format za kontakt telefon je '06X XXX XXXX' ,duzine 9 ili 10 cfiara.");
                     return;
                 }
-                if(!porukaZaValidaciju.contains("kontakt") && porukaZaValidaciju.contains("godine iskustva")){
-                    JOptionPane.showMessageDialog(this, "Polja "+porukaZaValidaciju+"nisu u dobrom formatu."
-                        + "Ocekivano je za godine iskustva da budu pozitivan broj manji od 60");
+                if (!porukaZaValidaciju.contains("kontakt") && porukaZaValidaciju.contains("godine iskustva")) {
+                    JOptionPane.showMessageDialog(this, "Polja " + porukaZaValidaciju + "nisu u dobrom formatu."
+                            + "Ocekivano je za godine iskustva da budu pozitivan broj manji od 60");
                     return;
                 }
-                if(porukaZaValidaciju.contains("ime") && porukaZaValidaciju.contains("prezime") && 
-                        !porukaZaValidaciju.contains("kontakt") && !porukaZaValidaciju.contains("godine iskustva")){
-                    JOptionPane.showMessageDialog(this, "Polja "+porukaZaValidaciju+"nisu u dobrom formatu.");   
+                if (porukaZaValidaciju.contains("ime") && porukaZaValidaciju.contains("prezime")
+                        && !porukaZaValidaciju.contains("kontakt") && !porukaZaValidaciju.contains("godine iskustva")) {
+                    JOptionPane.showMessageDialog(this, "Polja " + porukaZaValidaciju + "nisu u dobrom formatu.");
                     return;
                 }
-                if(porukaZaValidaciju.contains("kontakt") && porukaZaValidaciju.contains("godine iskustva")){
-                    JOptionPane.showMessageDialog(this, "Polja "+porukaZaValidaciju+"nisu u dobrom formatu."
-                        + "Ocekivani format za kontakt telefon je '06X XXX XXXX' ,duzine 9 ili 10 cfiara. "
+                if (porukaZaValidaciju.contains("kontakt") && porukaZaValidaciju.contains("godine iskustva")) {
+                    JOptionPane.showMessageDialog(this, "Polja " + porukaZaValidaciju + "nisu u dobrom formatu."
+                            + "Ocekivani format za kontakt telefon je '06X XXX XXXX' ,duzine 9 ili 10 cfiara. "
                             + "Ocekivano je za godine iskustva da budu pozitivan broj manje od 60 ");
                     return;
                 }
-                
+
             }
 
-            godineIsk=(int) odgovor;
-            
+            godineIsk = (int) odgovor;
+
             Trener trener = new Trener(0, ime, prezime, kontakt, sertifikat, godineIsk);
 
             int id = ClientController.getInstance().addTrener(trener);
@@ -304,20 +303,21 @@ public class TrenerForm extends javax.swing.JDialog {
             txtKontakt.setText("");
             txtGdnIsk.setText("");
             txtPrezime.setText("");
-            
-            
-            
+
+            trener.setIdTrenera(id);
+            String filePath = "src/main/resources/file.json";
+            JsonUtils.UpisiUJSONSaNazivomKlase(filePath, trener, "Naziv klase: ", "Trener");
 
         } catch (Exception e) {
 
             if (e instanceof IOException) {
                 JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
                 System.exit(0);
-                
+
             }
-            
+
             JOptionPane.showMessageDialog(this, e.getMessage());
-            
+
         }
     }//GEN-LAST:event_btnDodajActionPerformed
 

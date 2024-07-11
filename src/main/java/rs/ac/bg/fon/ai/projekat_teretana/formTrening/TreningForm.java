@@ -15,8 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-
-
+import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
@@ -42,7 +41,7 @@ public class TreningForm extends javax.swing.JDialog {
         } catch (Exception e) {
             if (e instanceof IOException) {
                 JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-                
+
                 System.exit(0);
             }
         }
@@ -61,8 +60,8 @@ public class TreningForm extends javax.swing.JDialog {
             popuniComboBoxTrener();
         } catch (Exception e) {
             if (e instanceof IOException) {
-               JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-                
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+
                 System.exit(0);
             }
         }
@@ -307,6 +306,11 @@ public class TreningForm extends javax.swing.JDialog {
             txtCena.setText("");
             txtDatum.setText("");
             txtTrajanje.setText("");
+
+            trening.setIdTreninga(id);
+
+            String filePath = "src/main/resources/file.json";
+            JsonUtils.UpisiUJSONSaNazivomKlase(filePath, trening, "Naziv klase: ", "Trening");
 
         } catch (Exception ex) {
 

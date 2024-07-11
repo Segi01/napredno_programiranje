@@ -1,0 +1,95 @@
+[
+  {
+    "trening": {
+      "idTreninga": 25,
+      "cena": 2500,
+      "datumTreninga": "Feb 15, 2024, 12:00:00 AM",
+      "trajanjeUMin": 75,
+      "tip": {
+        "idTipa": 8,
+        "nazivTipa": "Trening agilnosti",
+        "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+      },
+      "trener": {
+        "idTrenera": 5,
+        "ime": "Milos",
+        "prezime": "Lazic",
+        "kontakt": "064-460-889",
+        "sertifikat": false,
+        "godineIskustva": 5
+      },
+      "konstanta": 0
+    },
+    "korisnik": {
+      "idKorisnika": 21,
+      "ime": "Una",
+      "prezime": "Jovanovic",
+      "datumRodjenja": "Feb 8, 2002, 12:00:00 AM",
+      "adresa": "Mice Stojkovica 74",
+      "kontakt": "0644135007",
+      "grad": {
+        "idGrada": 9,
+        "naziv": "Zrenjanin"
+      },
+      "tipovi": [
+        {
+          "idTipa": 4,
+          "nazivTipa": "Trening ravnoteze",
+          "opis": "Trening ravnoteže igra ključnu ulogu u održavanju stabilnosti i koordinacije tela. \r\nNekoliko ključnih svrha treninga ravnoteže:\r\n-Prevencija povreda\r\n-Poboljšanje sportskih performansi\r\n-Održavanje pravilnog držanja tela\r\n-Povećanje svesti o telu i poboljšanje koordinacije"
+        },
+        {
+          "idTipa": 8,
+          "nazivTipa": "Trening agilnosti",
+          "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+        }
+      ]
+    },
+    "potroseneKal": 300,
+    "otkucajiSrca": 200,
+    "Naziv klase: ": "EvidentiranjePrisustva"
+  },
+  {
+    "trening": {
+      "idTreninga": 25,
+      "cena": 2500,
+      "datumTreninga": "Feb 15, 2024, 12:00:00 AM",
+      "trajanjeUMin": 75,
+      "tip": {
+        "idTipa": 8,
+        "nazivTipa": "Trening agilnosti",
+        "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+      },
+      "trener": {
+        "idTrenera": 5,
+        "ime": "Milos",
+        "prezime": "Lazic",
+        "kontakt": "064-460-889",
+        "sertifikat": false,
+        "godineIskustva": 5
+      },
+      "konstanta": 0
+    },
+    "korisnik": {
+      "idKorisnika": 17,
+      "ime": "Nadja",
+      "prezime": "Sevaric",
+      "datumRodjenja": "Feb 8, 1995, 12:00:00 AM",
+      "adresa": "Uzicka 20",
+      "kontakt": "0695885058",
+      "grad": {
+        "idGrada": 3,
+        "naziv": "Nis"
+      },
+      "tipovi": [
+        {
+          "idTipa": 8,
+          "nazivTipa": "Trening agilnosti",
+          "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+        }
+      ]
+    },
+    "potroseneKal": 300,
+    "otkucajiSrca": 150,
+    "Naziv klase: ": "EvidentiranjePrisustva"
+  }
+]

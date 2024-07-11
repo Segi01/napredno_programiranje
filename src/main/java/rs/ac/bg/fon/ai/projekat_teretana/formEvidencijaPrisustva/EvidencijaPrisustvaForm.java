@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.formEvidencijaPrisustva;
 
+import static com.google.protobuf.JavaFeaturesProto.java;
 import java.io.IOException;
 import rs.ac.bg.fon.ai.projekat_teretana.controller.ClientController;
 import rs.ac.bg.fon.ai.projekat_teretana.domain.EvidentiranjePrisustva;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
+import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
@@ -480,8 +482,10 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setSelectedIndex(-1);
             cmbTrening.setEnabled(true);
             btnUcitajKorisnike.setEnabled(true);
-
             
+            
+            String filePath = "src/main/resources/file.json";
+            JsonUtils.UpisiUJSONSaNazivomKlase(filePath, prisustva, "Naziv klase: ", "EvidentiranjePrisustva");
 
         } catch (Exception ex) {
 
@@ -550,6 +554,9 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setEnabled(true);
             cmbTrening.setSelectedIndex(-1);
             JOptionPane.showMessageDialog(this, ex.getMessage());
+
+           
+
         }
     }//GEN-LAST:event_btnUcitajEvidencijeActionPerformed
 

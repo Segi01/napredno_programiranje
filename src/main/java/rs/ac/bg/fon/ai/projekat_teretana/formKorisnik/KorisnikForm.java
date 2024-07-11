@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.formKorisnik;
 
+import static com.google.protobuf.JavaFeaturesProto.java;
 import java.awt.Point;
 import java.io.IOException;
 import rs.ac.bg.fon.ai.projekat_teretana.controller.ClientController;
@@ -19,9 +20,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
-
-
+import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
@@ -32,6 +31,7 @@ public class KorisnikForm extends javax.swing.JDialog {
     private int mode;
     private Korisnik k;
     TipTreninga tip;
+
     /**
      * Creates new form KorisnikForm
      */
@@ -44,15 +44,14 @@ public class KorisnikForm extends javax.swing.JDialog {
             popuniTipove();
             popuniComboBoxGrad();
         } catch (Exception e) {
-            if(e instanceof IOException){
-            JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-            System.exit(0);
+            if (e instanceof IOException) {
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+                System.exit(0);
             }
         }
         List<TipTreninga> tipovi = new ArrayList<>();
         ModelTabeleTipovi mtt = new ModelTabeleTipovi(tipovi);
         tblKorisnickiTipovi.setModel(mtt);
-        
 
     }
 
@@ -65,12 +64,12 @@ public class KorisnikForm extends javax.swing.JDialog {
         try {
             popuniTipove();
             for (TipTreninga tipTreninga : k.getTipovi()) {
-            cmbTipovi.removeItem(tipTreninga);
-        }
+                cmbTipovi.removeItem(tipTreninga);
+            }
         } catch (Exception e) {
-            if(e instanceof IOException){
-            JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
-            System.exit(0);
+            if (e instanceof IOException) {
+                JOptionPane.showMessageDialog(this, "GRESKA,POKUSAJTE KASNIJE!!!!!");
+                System.exit(0);
             }
         }
         this.k = k;
@@ -84,8 +83,6 @@ public class KorisnikForm extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         txtDatumRodj.setText(sdf.format(k.getDatumRodjenja()));
         cmbGrad.getModel().setSelectedItem(k.getGrad());
-        
-        
 
     }
 
@@ -437,10 +434,12 @@ public class KorisnikForm extends javax.swing.JDialog {
             mtt = new ModelTabeleTipovi(praznaListaTipova);
             tblKorisnickiTipovi.setModel(mtt);
             refresujFormu();
-            
-            
-            
-            
+
+            korisnik.setIdKorisnika(id);
+
+            korisnik.setIdKorisnika(id);
+            String filePath = "src/main/resources/file.json";
+            JsonUtils.UpisiUJSONSaNazivomKlase(filePath, korisnik, "Naziv klase: ", "Korisnik");
 
         } catch (Exception ex) {
             if (ex instanceof IOException) {
@@ -484,9 +483,9 @@ public class KorisnikForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Morate selektovati neki red");
             return;
         }
-        
+
         ModelTabeleTipovi mtt = (ModelTabeleTipovi) tblKorisnickiTipovi.getModel();
-        TipTreninga tip=mtt.getTipovi().get(selektovaniRed);
+        TipTreninga tip = mtt.getTipovi().get(selektovaniRed);
         mtt.deleteTip(tip);
         cmbTipovi.addItem(tip);
 
