@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class FormPretraziTrenere extends javax.swing.JDialog {
 

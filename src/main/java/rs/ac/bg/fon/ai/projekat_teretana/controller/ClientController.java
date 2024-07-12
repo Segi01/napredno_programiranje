@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class ClientController {
 

@@ -15,7 +15,7 @@ import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class TrenerForm extends javax.swing.JDialog {
 
@@ -315,7 +315,7 @@ public class TrenerForm extends javax.swing.JDialog {
                 System.exit(0);
 
             }
-
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
 
         }

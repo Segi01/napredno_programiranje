@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class KT extends AbstractDomainObject{
 

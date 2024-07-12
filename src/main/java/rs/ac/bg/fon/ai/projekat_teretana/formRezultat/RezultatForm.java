@@ -18,7 +18,7 @@ import rs.ac.bg.fon.ai.projekat_teretana.domain.Statistika;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class RezultatForm extends javax.swing.JDialog {
 
@@ -249,6 +249,7 @@ public class RezultatForm extends javax.swing.JDialog {
                 System.exit(0);
 
             }
+            ex.printStackTrace();
 
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }

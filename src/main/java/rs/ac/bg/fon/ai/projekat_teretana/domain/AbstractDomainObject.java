@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Stefan
- */
+ * @author Stefan Segrt
+ */ 
 public abstract class AbstractDomainObject implements Serializable {
     
     

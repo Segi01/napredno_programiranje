@@ -22,7 +22,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class FormPretraziTreninge extends javax.swing.JDialog {
 

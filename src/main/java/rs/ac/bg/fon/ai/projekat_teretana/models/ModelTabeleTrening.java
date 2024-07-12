@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class ModelTabeleTrening extends AbstractTableModel{
     

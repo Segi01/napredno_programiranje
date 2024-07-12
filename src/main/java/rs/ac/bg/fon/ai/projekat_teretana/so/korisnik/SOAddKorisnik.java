@@ -16,23 +16,56 @@ import java.util.List;
 
 
 /**
- *
- * @author Stefan
+ * Klasa SOAddKorisnik je odgovorna za dodavanje nove instance klase 
+ * Korisnik u bazu podataka kao i tipova treninga samog korisnika. Ova klasa prosiruje klasu AbstractSO 
+ * i implementira potrebne metode za validaciju i izvrsavanje.
+ * 
+ * Ova klasa osigurava da je objekat prosledjen za unos instanca 
+ * klase Korisnik, a zatim ga dodaje u bazu podataka, zajedno sa 
+ * povezanim tipovima treninga.
+ * 
+ * @author Stefan Segrt
  */
 public class SOAddKorisnik extends AbstractSO {
 
+    /**
+     * Id korisnika koji je dodat u bazu podataka.
+     */
     private int idKorisnik;
+    /**
+     * Vraca id tipa koji je dodat u bazu podataka
+     */
     private int idTipa;
+    /**
+     * Niz koji sluzi skup svih id-jeva tipa treninga koji su dodati
+    */
     private ArrayList<Integer> nizId = new ArrayList<>();
 
+    /**
+     * Vraca id novounetog korisnika.
+     * 
+     * @return id novounetog korisnika.
+     */
     public int getIdKorisnik() {
         return idKorisnik;
     }
 
+    /**
+     * Vraca listu id-jeva tipova treninga povezanih sa korisnikom.
+     * 
+     * @return Lista id-jeva tipova treninga.
+     */
     public ArrayList<Integer> getNizId() {
         return nizId;
     }
 
+    /**
+     * Validira prosledjeni objekat.
+     * 
+     * @param obj Objekat koji treba da se validira.
+     * @throws Exception ako prosledjeni objekat nije instanca klase Korisnik
+     *                   ili ako je objekat null.
+     */
     @Override
     protected void validate(Object obj) throws Exception {
         AbstractDomainObject ado = (AbstractDomainObject) obj;
@@ -40,57 +73,31 @@ public class SOAddKorisnik extends AbstractSO {
         if (ado == null || !(ado instanceof Korisnik)) {
             throw new Exception("Prosledjeni objekat nije instanca klase Korisnik!");
         }
-
-//        Korisnik k = (Korisnik) ado;
-//        if (k.getAdresa().isEmpty() || k.getKontakt().isEmpty() || k.getIme().isEmpty()
-//                || k.getPrezime().isEmpty()) {
-//            throw new Exception("Niste popunili sva polja!!!");
-//        }
-//        if (k.getGrad() == null) {
-//            throw new Exception("Morate selektovati neki grad!!!");
-//        }
-//        if (k.getTipovi().isEmpty()) {
-//            throw new Exception("Korisnik mora imati barem jedan tip!!");
-//        }
-//        if (!k.getIme().matches("[a-zA-Z]+") || !Character.isUpperCase(k.getIme().charAt(0))) {
-//            throw new Exception("Ime nije u dobrom formatu!!!");
-//        }
-
-//        if (!k.getPrezime().matches("[a-zA-Z]+") || !Character.isUpperCase(k.getPrezime().charAt(0))) {
-//            throw new Exception("Prezime nije u dobrom formatu!!!");
-//        }
-//
-//        if (!k.getKontakt().matches("[\\d]+") || !k.getKontakt().startsWith("06")
-//                || (k.getKontakt().length() != 9 && k.getKontakt().length() != 10)) {
-//            throw new Exception("Kontakt nije u dobrom formatu!!!");
-//        }
-        
-
     }
 
+    /**
+     * Izvrsava unos objekta u bazu podataka.
+     * 
+     * @param obj Objekat koji treba da se unese u bazu podataka.
+     * @throws Exception ako dodje do greske prilikom unosa u bazu podataka.
+     */
     @Override
     protected void execute(Object obj) throws Exception {
-
         AbstractDomainObject ado = (AbstractDomainObject) obj;
 
         idKorisnik = DBBroker.getInstance().insert(ado);
         Korisnik k = (Korisnik) ado;
         List<TipTreninga> tipovi = k.getTipovi();
-        KT kt=new KT();
+        KT kt = new KT();
         kt.setKorisnik(k);
         kt.getKorisnik().setIdKorisnika(idKorisnik);
-        
-        
-        
+
         for (TipTreninga tipTreninga : tipovi) {
             kt.setTip(tipTreninga);
-            AbstractDomainObject ado1=kt;
-//            idTipa = DBBroker.getInstance().insertTip(tipTreninga, idKorisnik);
-            idTipa=DBBroker.getInstance().insert(ado1);
+            AbstractDomainObject ado1 = kt;
+            idTipa = DBBroker.getInstance().insert(ado1);
             nizId.add(idTipa);
-
         }
-
     }
 
 }

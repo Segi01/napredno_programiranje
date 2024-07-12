@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class ModelTabeleEP extends AbstractTableModel{
     

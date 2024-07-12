@@ -16,7 +16,7 @@ import rs.ac.bg.fon.ai.projekat_teretana.forms.BaseConfiguration;
 
 /**
  *
- * @author Korisnik
+ * @author Stefan Segrt
  */
 public class DBConnection {
 

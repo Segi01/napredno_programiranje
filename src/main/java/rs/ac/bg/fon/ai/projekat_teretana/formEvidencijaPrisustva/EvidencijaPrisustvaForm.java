@@ -22,7 +22,7 @@ import rs.ac.bg.fon.ai.projekat_teretana.json.JsonUtils;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
 
@@ -503,6 +503,7 @@ public class EvidencijaPrisustvaForm extends javax.swing.JDialog {
             cmbTrening.setEnabled(true);
             btnUcitajKorisnike.setEnabled(true);
 
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 

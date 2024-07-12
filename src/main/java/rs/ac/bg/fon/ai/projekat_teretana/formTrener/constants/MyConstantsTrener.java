@@ -6,7 +6,7 @@ package rs.ac.bg.fon.ai.projekat_teretana.formTrener.constants;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public interface MyConstantsTrener {
     

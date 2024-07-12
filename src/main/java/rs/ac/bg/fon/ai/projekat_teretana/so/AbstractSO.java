@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public abstract class AbstractSO {
     

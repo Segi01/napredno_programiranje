@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class Administrator implements Serializable{
     

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class FormPretraziKorisnike extends javax.swing.JDialog {
 

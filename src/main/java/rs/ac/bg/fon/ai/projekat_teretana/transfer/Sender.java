@@ -11,7 +11,7 @@ import java.net.Socket;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class Sender implements Serializable {
     

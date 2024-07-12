@@ -14,38 +14,58 @@ import java.util.List;
 
 
 /**
- *
- * @author Stefan
+ * Klasa SOGetListTip je odgovorna za dobijanje liste tipova treninga 
+ * iz baze podataka(lista svih tipova). Ova klasa prosiruje klasu AbstractSO i implementira 
+ * potrebne metode za validaciju i izvrsavanje.
+ * 
+ * Ova klasa osigurava da je prosledjeni objekat instanca klase 
+ * TipTreninga, a zatim dobija listu tipova treninga iz baze podataka.
+ * 
+ * @author Stefan Segrt
  */
-public class SOGetListTip extends AbstractSO{
+public class SOGetListTip extends AbstractSO {
 
+    /**
+     * Lista svih tipova treninga dobijenih iz baze podataka.
+     */
     private List<TipTreninga> tipovi;
 
-    
-    
+    /**
+     * Validira prosledjeni objekat.
+     * 
+     * @param obj Objekat koji treba da se validira.
+     * @throws Exception ako prosledjeni objekat nije instanca klase 
+     *                   TipTreninga.
+     */
     @Override
     protected void validate(Object obj) throws Exception {
-        
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
         if (!(ado instanceof TipTreninga)) {
             throw new Exception("Prosledjeni objekat nije instanca klase TipTreninga!");
         }
     }
 
+    /**
+     * Izvrsava dobijanje liste tipova treninga iz baze podataka.
+     * 
+     * @param obj Objekat koji sadzi kriterijume za pretragu tipova treninga.
+     * @throws Exception ako dodje do greske prilikom preuzimanja iz baze podataka.
+     */
     @Override
     protected void execute(Object obj) throws Exception {
-        
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
-        
-        List<AbstractDomainObject> lista=DBBroker.getInstance().selectList(ado);
-        tipovi=(ArrayList<TipTreninga>)(ArrayList<?>)lista;
-        
-        
-        
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
+        List<AbstractDomainObject> lista = DBBroker.getInstance().selectList(ado);
+        tipovi = (ArrayList<TipTreninga>) (ArrayList<?>) lista;
     }
 
+    /**
+     * Vraca listu tipova treninga.
+     * 
+     * @return Lista tipova treninga.
+     */
     public List<TipTreninga> getTipovi() {
         return tipovi;
     }
+
     
 }

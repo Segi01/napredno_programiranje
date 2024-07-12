@@ -6,7 +6,7 @@ package rs.ac.bg.fon.ai.projekat_teretana.formEvidencijaPrisustva.constants;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public interface MyConstantsEvidencija {
     

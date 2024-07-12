@@ -6,7 +6,7 @@ package rs.ac.bg.fon.ai.projekat_teretana.operation;
 
 /**
  *
- * @author Stefan
+ * @author Stefan Segrt
  */
 public class Operation {
     
