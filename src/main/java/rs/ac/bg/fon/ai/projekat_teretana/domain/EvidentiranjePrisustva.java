@@ -19,9 +19,13 @@ import java.util.Objects;
  */
 public class EvidentiranjePrisustva extends AbstractDomainObject {
 
+    @Expose
     private Trening trening;
+    @Expose
     private Korisnik korisnik;
+    @Expose
     private int potroseneKal;
+    @Expose
     private int otkucajiSrca;
     private TipTreninga pomocna;
     

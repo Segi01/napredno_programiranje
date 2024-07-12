@@ -20,11 +20,17 @@ import java.util.Objects;
  */
 public class Trening extends AbstractDomainObject {
 
+    @Expose
     private int idTreninga;
+    @Expose
     private int cena;
+    @Expose
     private Date datumTreninga;
+    @Expose
     private int trajanjeUMin;
+    @Expose
     private TipTreninga tip;
+    @Expose
     private Trener trener;
 
     private int konstanta = 0;

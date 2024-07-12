@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,9 +17,13 @@ import java.util.Objects;
  */
 public class RezultatiKorisnika extends AbstractDomainObject {
 
+    @Expose
     private int idRez;
+    @Expose
     private Korisnik korisnik;
+    @Expose
     private Date datumRezultata;
+    @Expose
     private Statistika statistika;
 
     public RezultatiKorisnika() {

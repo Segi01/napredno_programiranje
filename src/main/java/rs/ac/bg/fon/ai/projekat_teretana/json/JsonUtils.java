@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class JsonUtils {
     
-   private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+   private static final Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
     public static void UpisiUJSONSaNazivomKlase(String putanja, Object object, String nazivKlase, String klasa) throws IOException {
         if (object instanceof List) {

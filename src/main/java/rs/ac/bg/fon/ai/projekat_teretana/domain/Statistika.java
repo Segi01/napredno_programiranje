@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,9 +15,13 @@ import java.util.ArrayList;
  */
 public class Statistika extends AbstractDomainObject {
 
+    @Expose
     private int id;
+    @Expose
     private double procenatMasti;
+    @Expose
     private double procenatMisica;
+    @Expose
     private double tezinaUKG;
 
     public Statistika() {

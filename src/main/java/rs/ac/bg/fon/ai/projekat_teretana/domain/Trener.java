@@ -4,6 +4,7 @@
  */
 package rs.ac.bg.fon.ai.projekat_teretana.domain;
 
+import com.google.gson.annotations.Expose;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,12 +16,17 @@ import java.util.Objects;
  */
 public class Trener extends AbstractDomainObject {
     
-    
+    @Expose
     private int idTrenera;
+    @Expose
     private String ime;
+    @Expose
     private String prezime;
+    @Expose
     private String kontakt;
+    @Expose
     private Boolean sertifikat;
+    @Expose
     private int godineIskustva;
 
     public Trener() {

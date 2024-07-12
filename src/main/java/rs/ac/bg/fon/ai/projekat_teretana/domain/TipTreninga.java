@@ -17,8 +17,11 @@ import java.util.Objects;
  */
 public class TipTreninga extends AbstractDomainObject {
 
+    @Expose
     private int idTipa;
+    @Expose
     private String nazivTipa;
+    @Expose
     private String opis;
     private static final long serialVersionUID=1234567890;
 

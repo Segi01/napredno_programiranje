@@ -1,95 +1,103 @@
 [
   {
     "trening": {
-      "idTreninga": 25,
-      "cena": 2500,
-      "datumTreninga": "Feb 15, 2024, 12:00:00 AM",
-      "trajanjeUMin": 75,
+      "idTreninga": 26,
+      "cena": 2000,
+      "datumTreninga": "May 25, 2024, 12:00:00 AM",
+      "trajanjeUMin": 90,
       "tip": {
-        "idTipa": 8,
-        "nazivTipa": "Trening agilnosti",
-        "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+        "idTipa": 2,
+        "nazivTipa": "Trening snage",
+        "opis": "Trening snage, takođe poznat kao trening s tegovima ili otporom, ima brojne koristi za zdravlje i dobrostanje.\r\nNekoliko ključnih svrha treninga snage:\r\n-Povećanje mišićne mase i snage\r\n-Održavanje zdrave telesne mase\r\n-Poboljšanje metaboličke aktivnosti\r\n-Poboljšanje koordinacije i ravnoteže\r\n-Smanjenje rizika od povreda\r\n-Poboljšanje funkcionalnosti svakodnevnih aktivnosti i prevencija gubitka mišićne mase tokom starenja"
       },
       "trener": {
-        "idTrenera": 5,
-        "ime": "Milos",
-        "prezime": "Lazic",
-        "kontakt": "064-460-889",
-        "sertifikat": false,
-        "godineIskustva": 5
-      },
-      "konstanta": 0
+        "idTrenera": 2,
+        "ime": "Stefan",
+        "prezime": "Starcevic",
+        "kontakt": "062-765-1232",
+        "sertifikat": true,
+        "godineIskustva": 2
+      }
     },
     "korisnik": {
-      "idKorisnika": 21,
-      "ime": "Una",
-      "prezime": "Jovanovic",
-      "datumRodjenja": "Feb 8, 2002, 12:00:00 AM",
-      "adresa": "Mice Stojkovica 74",
-      "kontakt": "0644135007",
+      "idKorisnika": 42,
+      "ime": "Milos",
+      "prezime": "Jankovic",
+      "datumRodjenja": "Jan 21, 1991, 12:00:00 AM",
+      "adresa": "Milosa Pocerca",
+      "kontakt": "069555333",
       "grad": {
-        "idGrada": 9,
-        "naziv": "Zrenjanin"
+        "idGrada": 1,
+        "naziv": "Beograd"
       },
       "tipovi": [
         {
-          "idTipa": 4,
-          "nazivTipa": "Trening ravnoteze",
-          "opis": "Trening ravnoteže igra ključnu ulogu u održavanju stabilnosti i koordinacije tela. \r\nNekoliko ključnih svrha treninga ravnoteže:\r\n-Prevencija povreda\r\n-Poboljšanje sportskih performansi\r\n-Održavanje pravilnog držanja tela\r\n-Povećanje svesti o telu i poboljšanje koordinacije"
+          "idTipa": 1,
+          "nazivTipa": "Kardiovaskularni",
+          "opis": "Kardiovaskularni trening, takođe poznat kao kardio trening ili aerobni trening, obuhvata aktivnosti koje povećavaju rad srca i poboljšavaju cirkulaciju krvi.\r\nOvaj tip treninga ima brojne koristi za zdravlje i dobrostanje. Nekoliko kljucnih svrha kardiovaskularnog treninga su:\r\n-Poboljšanje kardiovaskularnog zdravlja\r\n-Povećanje izdržljivosti\r\n-Gubitak telesne mase i održavanje telesne linije\r\n-Jačanje imunološkog sistema\r\n-Poboljšanje kvaliteta sna i povećanje energije"
         },
         {
-          "idTipa": 8,
-          "nazivTipa": "Trening agilnosti",
-          "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+          "idTipa": 2,
+          "nazivTipa": "Trening snage",
+          "opis": "Trening snage, takođe poznat kao trening s tegovima ili otporom, ima brojne koristi za zdravlje i dobrostanje.\r\nNekoliko ključnih svrha treninga snage:\r\n-Povećanje mišićne mase i snage\r\n-Održavanje zdrave telesne mase\r\n-Poboljšanje metaboličke aktivnosti\r\n-Poboljšanje koordinacije i ravnoteže\r\n-Smanjenje rizika od povreda\r\n-Poboljšanje funkcionalnosti svakodnevnih aktivnosti i prevencija gubitka mišićne mase tokom starenja"
+        },
+        {
+          "idTipa": 3,
+          "nazivTipa": "Trening fleksibilnosti",
+          "opis": "Trening fleksibilnosti, takođe poznat kao istezanje, ima značajne koristi za zdravlje i funkcionalnost tela.\r\nNekoliko ključnih svrha treninga fleksibilnosti:\r\n-Poboljšanje opsega pokreta\r\n-Smanjenje rizika od povreda\r\n-Poboljsanje drzanja tela\r\n-Poboljsanje cirkulacije i odrzavanje ravnoteze u misicima"
         }
       ]
     },
     "potroseneKal": 300,
-    "otkucajiSrca": 200,
+    "otkucajiSrca": 100,
     "Naziv klase: ": "EvidentiranjePrisustva"
   },
   {
     "trening": {
-      "idTreninga": 25,
-      "cena": 2500,
-      "datumTreninga": "Feb 15, 2024, 12:00:00 AM",
-      "trajanjeUMin": 75,
+      "idTreninga": 26,
+      "cena": 2000,
+      "datumTreninga": "May 25, 2024, 12:00:00 AM",
+      "trajanjeUMin": 90,
       "tip": {
-        "idTipa": 8,
-        "nazivTipa": "Trening agilnosti",
-        "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+        "idTipa": 2,
+        "nazivTipa": "Trening snage",
+        "opis": "Trening snage, takođe poznat kao trening s tegovima ili otporom, ima brojne koristi za zdravlje i dobrostanje.\r\nNekoliko ključnih svrha treninga snage:\r\n-Povećanje mišićne mase i snage\r\n-Održavanje zdrave telesne mase\r\n-Poboljšanje metaboličke aktivnosti\r\n-Poboljšanje koordinacije i ravnoteže\r\n-Smanjenje rizika od povreda\r\n-Poboljšanje funkcionalnosti svakodnevnih aktivnosti i prevencija gubitka mišićne mase tokom starenja"
       },
       "trener": {
-        "idTrenera": 5,
-        "ime": "Milos",
-        "prezime": "Lazic",
-        "kontakt": "064-460-889",
-        "sertifikat": false,
-        "godineIskustva": 5
-      },
-      "konstanta": 0
+        "idTrenera": 2,
+        "ime": "Stefan",
+        "prezime": "Starcevic",
+        "kontakt": "062-765-1232",
+        "sertifikat": true,
+        "godineIskustva": 2
+      }
     },
     "korisnik": {
-      "idKorisnika": 17,
-      "ime": "Nadja",
-      "prezime": "Sevaric",
-      "datumRodjenja": "Feb 8, 1995, 12:00:00 AM",
-      "adresa": "Uzicka 20",
-      "kontakt": "0695885058",
+      "idKorisnika": 10,
+      "ime": "Milica",
+      "prezime": "Jovanovic",
+      "datumRodjenja": "Jul 22, 2002, 12:00:00 AM",
+      "adresa": "Jove Ilica 1",
+      "kontakt": "0625551144",
       "grad": {
-        "idGrada": 3,
-        "naziv": "Nis"
+        "idGrada": 1,
+        "naziv": "Beograd"
       },
       "tipovi": [
         {
-          "idTipa": 8,
-          "nazivTipa": "Trening agilnosti",
-          "opis": "Trening agilnosti fokusiran je na poboljšanje brzine, preciznosti, ravnoteže, koordinacije i fleksibilnosti u pokretima.\r\nNekoliko ključnih svrha treninga agilnosti:\r\n-Poboljšanje sportskih performansi\r\n-Smanjenje rizika od povreda\r\n-Brže reakcije i agilnost uma\r\n-Poboljšanje estetskih elemenata u plesu i umetnosti kretanja\r\n(za plesače i ljude koji se bave umetnošću kretanja,\r\nagilnost igra ključnu ulogu u izvođenju elegantnih i preciznih pokreta)\r\n"
+          "idTipa": 1,
+          "nazivTipa": "Kardiovaskularni",
+          "opis": "Kardiovaskularni trening, takođe poznat kao kardio trening ili aerobni trening, obuhvata aktivnosti koje povećavaju rad srca i poboljšavaju cirkulaciju krvi.\r\nOvaj tip treninga ima brojne koristi za zdravlje i dobrostanje. Nekoliko kljucnih svrha kardiovaskularnog treninga su:\r\n-Poboljšanje kardiovaskularnog zdravlja\r\n-Povećanje izdržljivosti\r\n-Gubitak telesne mase i održavanje telesne linije\r\n-Jačanje imunološkog sistema\r\n-Poboljšanje kvaliteta sna i povećanje energije"
+        },
+        {
+          "idTipa": 2,
+          "nazivTipa": "Trening snage",
+          "opis": "Trening snage, takođe poznat kao trening s tegovima ili otporom, ima brojne koristi za zdravlje i dobrostanje.\r\nNekoliko ključnih svrha treninga snage:\r\n-Povećanje mišićne mase i snage\r\n-Održavanje zdrave telesne mase\r\n-Poboljšanje metaboličke aktivnosti\r\n-Poboljšanje koordinacije i ravnoteže\r\n-Smanjenje rizika od povreda\r\n-Poboljšanje funkcionalnosti svakodnevnih aktivnosti i prevencija gubitka mišićne mase tokom starenja"
         }
       ]
     },
-    "potroseneKal": 300,
-    "otkucajiSrca": 150,
+    "potroseneKal": 500,
+    "otkucajiSrca": 200,
     "Naziv klase: ": "EvidentiranjePrisustva"
   }
 ]

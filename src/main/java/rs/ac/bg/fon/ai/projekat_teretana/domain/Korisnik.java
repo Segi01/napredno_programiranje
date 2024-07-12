@@ -20,13 +20,21 @@ import java.util.Objects;
  */
 public class Korisnik extends AbstractDomainObject {
 
+    @Expose
     private int idKorisnika;
+    @Expose
     private String ime;
+    @Expose
     private String prezime;
+    @Expose
     private Date datumRodjenja;
+    @Expose
     private String adresa;
+    @Expose
     private String kontakt;
+    @Expose
     private Grad grad;
+    @Expose
     private List<TipTreninga> tipovi = new ArrayList<>();
     
     private static final long serialVersionUID = 123456789;
