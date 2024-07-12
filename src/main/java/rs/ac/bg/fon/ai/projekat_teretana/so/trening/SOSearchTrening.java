@@ -14,42 +14,58 @@ import java.util.List;
 
 
 /**
- *
- * @author Stefan
+ * Klasa SOSearchTrening je odgovorna za pretragu instanci klase 
+ * Trening iz baze podataka. Ova klasa prosiruje klasu AbstractSO 
+ * i implementira potrebne metode za validaciju i izvrsavanje.
+ * 
+ * Ova klasa osigurava da je objekat prosledjen za pretragu instanci 
+ * klase Trening, a zatim dobavlja listu tih instanci iz baze podataka.
+ * 
+ * @author Stefan Segrt
  */
 public class SOSearchTrening extends AbstractSO {
 
+    /**
+     * Lista treninga koji ce biti vraceni kao rezultat pretrage baze podataka po uslovu.
+     */
     List<Trening> treninzi;
-    
+
+    /**
+     * Validira prosledjeni objekat.
+     * 
+     * @param obj Objekat koji treba da se validira.
+     * @throws Exception ako prosledjeni objekat nije instanca klase Trening
+     *                   ili ako je objekat null.
+     */
     @Override
     protected void validate(Object obj) throws Exception {
-        
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
         if (!(ado instanceof Trening)) {
             throw new Exception("Prosledjeni objekat nije instanca klase Trening!");
         }
-        Trening trening=(Trening) ado;
-        
-        
-//        if(trening.getTip()==null)
-//            throw new Exception("Niste selektovali ni jedan tip!!!");
-        
-//        if(trening.getCena()<=0)
-//            throw new Exception("Cena ne sme biti negativan broj ili jednaka nuli");
     }
 
+    /**
+     * Izvrsava pretragu objekata u bazi podataka.
+     * 
+     * @param obj Objekat koji treba da se pretrazi u bazi podataka.
+     * @throws Exception ako dodje do greske prilikom pretrage u bazi podataka.
+     */
     @Override
     protected void execute(Object obj) throws Exception {
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
         
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
-        
-        List<AbstractDomainObject> lista=DBBroker.getInstance().selectList(ado);
-        treninzi=(ArrayList<Trening>)(ArrayList<?>)lista;
+        List<AbstractDomainObject> lista = DBBroker.getInstance().selectList(ado);
+        treninzi = (ArrayList<Trening>) (ArrayList<?>) lista;
     }
 
+    /**
+     * Vraca listu treninga iz baze podataka.
+     * 
+     * @return Lista treninga iz baze podataka.
+     */
     public List<Trening> getTreninzi() {
         return treninzi;
     }
-    
     
 }

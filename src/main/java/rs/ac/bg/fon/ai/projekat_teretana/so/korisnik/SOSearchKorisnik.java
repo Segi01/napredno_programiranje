@@ -14,37 +14,59 @@ import java.util.List;
 
 
 /**
- *
- * @author Stefan
+ * Klasa SOSearchKorisnik je odgovorna za pretragu instanci klase 
+ * Korisnik iz baze podataka po odredjenom uslovu. Ova klasa prosiruje klasu AbstractSO 
+ * i implementira potrebne metode za validaciju i izvrsavanje.
+ * 
+ * Ova klasa osigurava da je objekat prosledjen za pretragu instanci 
+ * klase Korisnik, a zatim dobavlja listu tih instanci iz baze podataka.
+ * 
+ * @author Stefan Segrt
  */
 public class SOSearchKorisnik extends AbstractSO {
 
+    /**
+     * Lista korisnika dobijenih nakon pretrage baze podataka po odredjenom uslovu
+     */
     List<Korisnik> korisnici;
 
+    /**
+     * Vraca listu korisnika iz baze podataka.
+     * 
+     * @return Lista korisnika iz baze podataka.
+     */
     public List<Korisnik> getKorisnici() {
         return korisnici;
     }
 
+    /**
+     * Validira prosledjeni objekat.
+     * 
+     * @param obj Objekat koji treba da se validira.
+     * @throws Exception ako prosledjeni objekat nije instanca klase Korisnik
+     *                   ili ako je objekat null.
+     */
     @Override
     protected void validate(Object obj) throws Exception {
-
         AbstractDomainObject ado = (AbstractDomainObject) obj;
 
         if (ado == null || !(ado instanceof Korisnik)) {
             throw new Exception("Prosledjeni objekat nije instanca klase Korisnik!");
         }
-       
-
     }
 
+    /**
+     * Izvrsava pretragu objekata u bazi podataka.
+     * 
+     * @param obj Objekat koji treba da se pretrazi u bazi podataka.
+     * @throws Exception ako dodje do greske prilikom pretrage u bazi podataka.
+     */
     @Override
     protected void execute(Object obj) throws Exception {
-
         AbstractDomainObject ado = (AbstractDomainObject) obj;
 
         List<AbstractDomainObject> lista = DBBroker.getInstance().selectList(ado);
         korisnici = (ArrayList<Korisnik>) (ArrayList<?>) lista;
-
     }
 
 }

@@ -14,48 +14,57 @@ import rs.ac.bg.fon.ai.projekat_teretana.so.AbstractSO;
 
 
 /**
- *
- * @author Stefan
+ * Klasa SOAddTrening je odgovorna za dodavanje nove instance klase 
+ * Trening u bazu podataka. Ova klasa prosiruje klasu AbstractSO 
+ * i implementira potrebne metode za validaciju i izvrsavanje.
+ * 
+ * Ova klasa osigurava da je objekat prosledjen za unos instanca 
+ * klase Trening, a zatim ga ubacuje u bazu podataka.
+ * 
+ * @author Stefan Segrt
  */
-public class SOAddTrening extends AbstractSO{
+public class SOAddTrening extends AbstractSO {
 
+    /**
+     * id treninga koji je unesen u bazu podataka
+     */
     private int id;
 
+    /**
+     * Vraca id novounetog treninga.
+     * 
+     * @return id novounetog treninga.
+     */
     public int getId() {
         return id;
     }
-    
-    
-    
+
+    /**
+     * Validira prosledjeni objekat.
+     * 
+     * @param obj Objekat koji treba da se validira.
+     * @throws Exception ako prosledjeni objekat nije instanca klase Trening
+     *                   ili ako je objekat null.
+     */
     @Override
     protected void validate(Object obj) throws Exception {
-        
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
         
         if (!(ado instanceof Trening)) {
-            throw new Exception("Prosledjeni objekat nije instanca klase Trening!");
+            throw new Exception("Prosleđeni objekat nije instanca klase Trening!");
         }
-        
-//        Trening trening=(Trening) ado;
-//        
-//        if(trening.getTip()==null)
-//            throw new Exception("Niste selektovali ni jedan tip");
-//        if(trening.getTrener()==null)
-//            throw new Exception("Niste selektovali ni jednog trenera");
-//        
-//        if(trening.getCena()<=0)
-//            throw new Exception("Cena ne sme biti negativan broj ili jednaka nuli");
-//        if(trening.getTrajanjeUMin()<=0 || trening.getTrajanjeUMin()>90)
-//            throw new Exception("Trajanje treninga mora biti broj veci od nule i manje od 90 min");
-//        
     }
 
+    /**
+     * Izvrsava unos objekta u bazu podataka.
+     * 
+     * @param obj Objekat koji treba da se unese u bazu podataka.
+     * @throws Exception ako dodje do greske prilikom unosa u bazu podataka.
+     */
     @Override
     protected void execute(Object obj) throws Exception {
+        AbstractDomainObject ado = (AbstractDomainObject) obj;
         
-        AbstractDomainObject ado=(AbstractDomainObject) obj;
-        
-        id=DBBroker.getInstance().insert(ado);
+        id = DBBroker.getInstance().insert(ado);
     }
-    
 }
